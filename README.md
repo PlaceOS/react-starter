@@ -1,6 +1,6 @@
 # PlaceOS React Starter
 
-![BUILD](https://github.com/placeos/user-interfaces/workflows/BUILD/badge.svg)
+![BUILD](https://github.com/placeos/react-starter/workflows/BUILD/badge.svg)
 
 React starter repository for PlaceOS applications.
 This repository provides a starting point for building PlaceOS applications using React.
