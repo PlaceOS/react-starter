@@ -26,6 +26,7 @@ If you wish to develop with a live environment you can change the details in [`v
 to point the the server with the live environment and update the SSL settings the match that environment.
 
 Note that OAuth redirects don't work when connecting you local instance to the live environment.
+
 To login in the local instance you will either need to copy a token from a live instance or use the basic auth form at `/login/?continue=/`.
 For the local login you will need to create a user or set a password for an auto-generated user.
 
@@ -40,7 +41,9 @@ Github actions have been setup for creating build artifacts and deploying them t
 
 Each application has a seperate branch dedicated to each of it's build types.
 
-Commits to the branch `trunk` will produce development builds that are committed to the branches `build/dev`
+Commits to the branch `trunk` will produce development builds that are committed to the branches `build/dev`.
+
 Commits to the branch `release/**` will produce development builds that are committed to the branches `build/prod`.
 You should have only one `release` branch at a time and it should be kept inline with develop rather than worked on directly.
+
 Commits to the branch `feat/**` will produce a production build that is commited to the branch `build/<branch-name>`
