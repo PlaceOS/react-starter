@@ -21,7 +21,6 @@ function SystemPage() {
     };
 
     const clearSubs = () => {
-        console.log('Subs:', sub_list);
         sub_list.forEach((sub) => sub && sub());
         sub_list = [];
     };
@@ -59,8 +58,8 @@ function SystemPage() {
 
     return (
         <div className="absolute inset-0 p-8 flex items-center flex-col">
-            <div className="rounded bg-white border border-gray-300 shadow text-black min-w-[24rem]">
-                <h3 className="text-2xl font-medium px-4 py-2 w-full border-b border-gray-300">
+            <div className="rounded-lg bg-white border border-gray-400 shadow text-black min-w-[24rem] p-2">
+                <h3 className="text-2xl font-medium px-4 py-2 w-full bg-gray-200 rounded">
                     {system?.display_name || system?.name || 'Loading...'}
                     {loading ? (
                         <span className="opacity-30 text-xs font-mono px-2 py-1 rounded bg-base-300">
@@ -68,8 +67,8 @@ function SystemPage() {
                         </span>
                     ) : null}
                 </h3>
-                <div className="px-2 pt-2">
-                    <p className="rounded bg-gray-100 p-2">
+                <div className="pt-2">
+                    <p className="rounded p-4 border border-gray-300">
                         {system?.description ? (
                             system.description
                         ) : (
@@ -96,9 +95,9 @@ function SystemPage() {
                     )}
                     <div>{active ? 'Powered On' : 'Powered Off'}</div>
                 </div>
-                <div className="px-4 py-2 mt-2 flex justify-end border-t border-gray-300">
+                <div className="p-2 mt-2 flex justify-end  bg-gray-200 rounded">
                     <button
-                        className="btn"
+                        className="btn w-32"
                         onClick={() => togglePower(!active)}
                     >
                         {active ? 'Turn Off' : 'Turn On'}
