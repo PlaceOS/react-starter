@@ -21,7 +21,8 @@ function SystemPage() {
     };
 
     const clearSubs = () => {
-        sub_list.forEach((sub) => sub());
+        console.log('Subs:', sub_list);
+        sub_list.forEach((sub) => sub && sub());
         sub_list = [];
     };
 
@@ -36,15 +37,19 @@ function SystemPage() {
             const mod = getModule(system.id, 'System');
             if (!mod) return;
             const conn_bind = mod.binding('connected');
-            sub_list.push(
-                conn_bind.listen().subscribe((state) => setConnected(state))
-                    .unsubscribe,
+            sub_list.push(() =>
+                conn_bind
+                    .listen()
+                    .subscribe((state) => setConnected(state))
+                    .unsubscribe(),
             );
             sub_list.push(conn_bind.bind());
             const active_bind = mod.binding('active');
-            sub_list.push(
-                active_bind.listen().subscribe((state) => setActive(state))
-                    .unsubscribe,
+            sub_list.push(() =>
+                active_bind
+                    .listen()
+                    .subscribe((state) => setActive(state))
+                    .unsubscribe(),
             );
             sub_list.push(active_bind.bind());
         };
@@ -61,6 +66,11 @@ function SystemPage() {
             <div className="rounded bg-white border border-gray-300 shadow text-black min-w-[24rem]">
                 <h3 className="text-2xl font-medium px-4 py-2 w-full border-b border-gray-300">
                     {system?.display_name || system?.name || 'Loading...'}
+                    {loading ? (
+                        <span className="opacity-30 text-xs font-mono px-2 py-1 rounded bg-base-300">
+                            Loading...
+                        </span>
+                    ) : null}
                 </h3>
                 <div className="px-2 pt-2">
                     <p className="rounded bg-gray-100 p-2">
