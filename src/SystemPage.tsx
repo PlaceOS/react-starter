@@ -35,18 +35,16 @@ function SystemPage() {
             clearSubs();
             const mod = getModule(system.id, 'System');
             if (!mod) return;
-            const conn_bind = mod.binding('connected');
-            const conn_sub = conn_bind
-                .listen()
-                .subscribe((state) => setConnected(state));
+            const conn_bind = mod.variable('connected');
+            const conn_sub = conn_bind.bindThenSubscribe((state) =>
+                setConnected(state),
+            );
             sub_list.push(() => conn_sub.unsubscribe());
-            sub_list.push(conn_bind.bind());
-            const active_bind = mod.binding('active');
-            const active_sub = active_bind
-                .listen()
-                .subscribe((state) => setActive(state));
+            const active_bind = mod.variable('active');
+            const active_sub = active_bind.bindThenSubscribe((state) =>
+                setActive(state),
+            );
             sub_list.push(() => active_sub.unsubscribe());
-            sub_list.push(active_bind.bind());
         };
         lastValueFrom(showSystem(system_id)).then((system) => {
             setSystem(system);
